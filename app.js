@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 
-require('dotenv').config();
+
 
 const app = express();
 const port = 3000;
@@ -15,6 +15,19 @@ const wss = new WebSocket.Server({ port: 8080 });
 const crypto = require('crypto');
 const secretKey = crypto.randomBytes(64).toString('hex');
 console.log('Ключ сгенерирован\n'+secretKey);
+
+require('dotenv').config();
+// Проверка наличия SESSION_SECRET и вывод сообщения
+if (process.env.SESSION_SECRET) {
+    console.log('Установленный ключ\n' + process.env.SESSION_SECRET);
+}
+// Настройка сессий
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Установите true, если используете HTTPS
+}));
 
 
 // Получаем текущую дату и время
@@ -85,17 +98,7 @@ wss.on('connection', (ws) => {
     });
 });
 
-// Проверка наличия SESSION_SECRET и вывод сообщения
-if (process.env.SESSION_SECRET) {
-    console.log('Текущий ключ\n' + process.env.SESSION_SECRET);
-}
-// Настройка сессий
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // Установите true, если используете HTTPS
-}));
+
 
 // Middleware для проверки авторизации
 function checkAuth(req, res, next) {
@@ -121,7 +124,7 @@ app.get('/session-data', (req, res) => {
 });
 
 // Раздача статических файлов
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'build')));
 
 
 
@@ -131,7 +134,7 @@ app.get('/', (req, res) => {
 });
 // Маршрут для входа
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'login.html'));
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 // Обработка логина
@@ -164,7 +167,7 @@ app.post('/login', (req, res) => {
 
 // Маршрут для главной страницы (требует авторизации)
 app.get('/main', checkAuth, (req, res) => {
-    res.sendFile(path.join(__dirname, 'main.html'));
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 // Функция для получения последнего ID

@@ -1,0 +1,181 @@
+@font-face {
+    font-family: 'LC_Chalk';
+    src: url('../fonts/LC_Chalk.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    overflow: hidden; /* Отключаем прокрутку */
+    display: block !important; /* Переопределяем flex для main_form, чтобы содержимое было блочным */
+}
+
+body .main-container {
+    margin-left: 4%; /* Отступ 4% от левого края */
+    margin-right: 4%; /* Отступ 4% от правого края */
+    width: 92%; /* Ширина контейнера с учетом отступов */
+    position: relative; /* Используем для нормального позиционирования */
+    align-items: flex-start !important; /* Убираем выравнивание по центру */
+    display: block !important; /* Отключаем flex для main-container */
+}
+body .main-container #desk p {
+    color: #ffffff !important;
+}
+
+
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+    padding: 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.logo img {
+    margin-right: 5%;
+    margin-left: 5%;
+    height: 150px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin-left: 50px;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #00853a;
+    border-radius: 15px;
+}
+
+.profile {
+    margin-left: auto;
+    padding: 10px 10px;
+    margin-right: 40px;
+}
+
+.profile a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.profile a:hover {
+    background-color: #00853a;
+    border-radius: 15px;
+}
+
+.main-container {
+    top: 51px; /* Отступ от меню навигации */
+    height: calc(100vh - 51px); /* Высота контейнера с учетом высоты меню */
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chat-desk {
+    display: flex; /* Размещаем элементы в одну строку */
+    justify-content: space-between;
+    width: 100%; /* С учетом отступов слева и справа по 2% */
+    height: 50%; /* Занимает 50% высоты экрана */
+    margin-bottom: 5%; /* Отступ от chat-desk до vvod-container */
+    padding-left: 3%;
+}
+
+#desk {
+    width: 60%;
+    height: 100%;
+    background-color: #2b2b2b;
+    color: #ffffff !important; /* Цвет текста */
+    font-family: 'LC_Chalk', serif; /* Шрифт имитирующий мел */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* Прокрутка по вертикали */
+    overflow-x: hidden; /* Запрещаем горизонтальную прокрутку */
+    word-wrap: break-word; /* Перенос слов при переполнении */
+    margin-right: 1%; /* Отступ между desk и chat */
+}
+
+#chat {
+    width: 25%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #333;
+    overflow-y: auto; /* Прокрутка по вертикали */
+    overflow-x: hidden; /* Запрещаем горизонтальную прокрутку */
+    word-wrap: break-word; /* Перенос слов при переполнении */
+    margin-right: 4%; /* Отступ 4% от правого края экрана */
+}
+
+.vvod-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 92%; /* Ширина контейнера с учетом отступов 9% слева и справа */
+    height: 15%; /* Высота контейнера */
+    margin: 0 auto; /* Центрируем контейнер */
+    margin-bottom: 9%; /* Отступ снизу */
+}
+
+.vvod-container textarea {
+    width: 100%; /* Ширина textarea */
+    height: 50%; /* Высота textarea */
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #474747;
+    background-color: rgba(128, 128, 128, 0.64);
+    resize: none;
+    overflow-y: auto; /* Прокрутка по вертикали */
+    word-wrap: break-word; /* Перенос слов при переполнении */
+    margin-right: 2%; /* Отступ между textarea и кнопкой */
+    font-family: 'Calibri', sans-serif;
+    font-size: large;
+}
+
+.vvod-container button {
+    width: 10%; /* Ширина кнопки */
+    height: 35%; /* Высота кнопки */
+    padding: 10px;
+    background-color: #00853a;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.vvod-container button:hover {
+    background-color: #006c2f;
+}
